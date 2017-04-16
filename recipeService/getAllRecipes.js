@@ -23,10 +23,9 @@ module.exports.getAllRecipes = (event, context, callback) => {
         body: JSON.stringify({
           data: data
         }),
-      };
+      }
       callback(null, response);
     }
-
   });
 
 };

@@ -94,6 +94,14 @@ functions:
           method: get
           cors: true
 
+  updateRecipeById:
+    handler: updateRecipeById.updateRecipeById
+    events:
+      - http:
+          path: api/v1/smartchef/updateRecipeById/{recipeId}
+          method: put
+          cors: true
+ 
 
 
 
