@@ -70,14 +70,34 @@ custom:
 #    - exclude-me-dir/**
 
 functions:
-  recipeCRUD:
-    handler: recipeCRUD.createRecipe
+  createRecipe:
+    handler: createRecipe.createRecipe
     events:
       - http:
           path: api/v1/smartchef/createRecipe
           method: post
           cors: true
-        
+
+  getAllRecipes:
+    handler: getAllRecipes.getAllRecipes
+    events:
+      - http:
+          path: api/v1/smartchef/getAllRecipes
+          method: get
+          cors: true
+
+  getRecipeById:
+    handler: getRecipeById.getRecipeById
+    events:
+      - http:
+          path: api/v1/smartchef/getRecipeById/{recipeId}
+          method: get
+          cors: true
+
+
+
+
+
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
