@@ -101,7 +101,14 @@ functions:
           path: api/v1/smartchef/updateRecipeById/{recipeId}
           method: put
           cors: true
- 
+
+  deleteRecipeById:
+    handler: deleteRecipeById.deleteRecipeById
+    events:
+      - http:
+          path: api/v1/smartchef/deleteRecipeById/{recipeId}
+          method: delete
+          cors: true
 
 
 
