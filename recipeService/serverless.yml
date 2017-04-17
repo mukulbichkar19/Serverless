@@ -28,8 +28,6 @@ provider:
   environment:
     DYNAMODB_TABLES: RECIPE_TABLES
 
-# you can add stapackage:
-
 custom:
   defaultStage: dev
   profiles:
@@ -41,35 +39,9 @@ custom:
 
     include:
       - node_modules/async
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-#            - "/*"
-
-# you can define service wide environment variables here
-#  environment:
-#    variable1: value1
-
-# you can add packaging information here
-#package:
-#  include:
-#    - include-me.js
-#    - include-me-dir/**
-#  exclude:
-#    - exclude-me.js
-#    - exclude-me-dir/**
 
 functions:
+  # This function creates new recipes
   createRecipe:
     handler: createRecipe.createRecipe
     events:
@@ -78,6 +50,7 @@ functions:
           method: post
           cors: true
 
+  # This function fetches all recipes
   getAllRecipes:
     handler: getAllRecipes.getAllRecipes
     events:
@@ -86,6 +59,7 @@ functions:
           method: get
           cors: true
 
+  # This function fetches recipe by id
   getRecipeById:
     handler: getRecipeById.getRecipeById
     events:
@@ -94,6 +68,7 @@ functions:
           method: get
           cors: true
 
+  # This function updates a particular recipe
   updateRecipeById:
     handler: updateRecipeById.updateRecipeById
     events:
@@ -102,6 +77,7 @@ functions:
           method: put
           cors: true
 
+  # This function deletes a particular recipe
   deleteRecipeById:
     handler: deleteRecipeById.deleteRecipeById
     events:
@@ -109,48 +85,3 @@ functions:
           path: api/v1/smartchef/deleteRecipeById/{recipeId}
           method: delete
           cors: true
-
-
-
-
-
-#    The following are a few example events you can configure
-#    NOTE: Please make sure to change your handler code to work with those events
-#    Check the event documentation for details
-#    events:
-#      - http:
-#          path: users/create
-#          method: get
-#      - s3: ${env:BUCKET}
-#      - schedule: rate(10 minutes)
-#      - sns: greeter-topic
-#      - stream: arn:aws:dynamodb:region:XXXXXX:table/foo/stream/1970-01-01T00:00:00.000
-#      - alexaSkill
-#      - iot:
-#          sql: "SELECT * FROM 'some_topic'"
-#      - cloudwatchEvent:
-#          event:
-#            source:
-#              - "aws.ec2"
-#            detail-type:
-#              - "EC2 Instance State-change Notification"
-#            detail:
-#              state:
-#                - pending
-#      - cloudwatchLog: '/aws/lambda/hello'
-
-#    Define function environment variables here
-#    environment:
-#      variable2: value2
-
-# you can add CloudFormation resource templates here
-#resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"

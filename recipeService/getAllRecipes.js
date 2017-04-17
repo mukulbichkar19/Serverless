@@ -1,13 +1,17 @@
 'use strict';
+
 var AWS = require('aws-sdk');
 var docClient = new AWS.DynamoDB.DocumentClient();
-// variables
-const table = "RECIPE_TABLES"; // The table you want to update
 
+/**
+  getAllRecipes: Returns all recipes present in the table
+  @returns JSON containing all recipes
+  @author Mukul on 04/16/2017
+*/
 module.exports.getAllRecipes = (event, context, callback) => {
 
   var params = {
-    TableName: table,
+    TableName: process.env.DYNAMODB_TABLES,
     ProjectionExpression: "recipeName, ingredients, recipeCuisine, steps,"+
                             "rating, recipeId, recipeItemId"
 };

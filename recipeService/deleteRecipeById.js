@@ -3,6 +3,12 @@
 var AWS = require('aws-sdk');
 var docClient = new AWS.DynamoDB.DocumentClient();
 
+/**
+  deleteRecipeById: Deletes the selected recipe
+  @param: None
+  @return: void
+  @author: Mukul on 04/16/2017
+*/
 module.exports.deleteRecipeById = (event, context, callback) => {
 
   var recipeId = event.pathParameters.recipeId;
